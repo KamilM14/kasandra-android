@@ -2,7 +2,9 @@ name: Sestavit APK
 
 on:
   push:
-    branches: [ main ]
+    paths:
+      - 'kasandra-android.zip'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 permissions:
