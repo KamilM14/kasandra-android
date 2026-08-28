@@ -27,6 +27,15 @@ jobs:
           unzip -q -o kasandra-android.zip -d src
           ls src/kasandra
 
+      - name: Stáhnout český model Vosk (pro offline přepis řeči)
+        run: |
+          curl -sSL --retry 3 -o model.zip https://alphacephei.com/vosk/models/vosk-model-small-cs-0.4-rhasspy.zip
+          unzip -q model.zip -d model
+          d=$(ls -d model/*/ | head -1)
+          mkdir -p src/kasandra/app/src/main/assets
+          mv "$d" src/kasandra/app/src/main/assets/model-cs
+          ls src/kasandra/app/src/main/assets/model-cs
+
       - name: Sestavit APK
         run: |
           cd src/kasandra
